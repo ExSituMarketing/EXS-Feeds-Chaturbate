@@ -1,5 +1,7 @@
 # EXS-FeedsChaturbateBundle
 
+[![Build Status](https://travis-ci.org/ExSituMarketing/EXS-Feeds-ChaturbateBundle.svg?branch=master)](https://travis-ci.org/ExSituMarketing/EXS-Feeds-ChaturbateBundle)
+
 ## Install
 
 Require the bundle from packagist
