@@ -7,7 +7,7 @@
 Require the bundle from packagist
 
 ```
-$ composer require exs/feeds-cambuilder-bundle
+$ composer require exs/feeds-chaturbate-bundle
 ```
 
 Enable the bundle in AppKernel
@@ -43,33 +43,35 @@ exs_feeds_chaturbate:
 ## Usage
 
 ```php
-// Returns live performers information.
-$performerIds = $container
+/**
+ * Returns live performers information.
+ */
+$performers = $container
     ->get('exs_feeds_chaturbate.feeds_reader')
     ->getLivePerformers()
 ;
-```
 
-Will returns an array of performer information like :
-
-```php
-$result = [
-    [
-        'num_followers' => 999,
-        'display_name' => "XXX",
-        'tags' => [
-            "XXX",
-        ],
-        'location' => "XXX",
-        'username' => "XXX",
-        'spoken_languages' => "XXX",
-        'is_hd' => true,
-        'seconds_online' => 999,
-        'gender' => "X",
-        'age' => 99,
-        'num_users' => 999,
-        'room_subject' => "XXX",
-    ],
-    ...
-];
+/**
+ * Performers information  are like :
+ *
+ * $performers = [
+ *     [
+ *         'num_followers' => 999,
+ *         'display_name' => "XXX",
+ *         'tags' => [
+ *             "XXX",
+ *         ],
+ *         'location' => "XXX",
+ *         'username' => "XXX",
+ *         'spoken_languages' => "XXX",
+ *         'is_hd' => true,
+ *         'seconds_online' => 999,
+ *         'gender' => "X",
+ *         'age' => 99,
+ *         'num_users' => 999,
+ *         'room_subject' => "XXX",
+ *     ],
+ *     ...
+ * ];
+ */
 ```
