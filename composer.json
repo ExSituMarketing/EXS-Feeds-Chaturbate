@@ -1,9 +1,9 @@
 {
-    "name": "exs/feeds-cambuilder-bundle",
+    "name": "exs/feeds-chaturbate-bundle",
     "type": "symfony-bundle",
-    "description": "This bundle reads CamBuilder's api to get live performers' Ids.",
+    "description": "This bundle reads Chaturbate's api to get live performers' Ids.",
     "keywords": ["Symfony2", "bundle"],
-    "homepage": "https://github.com/ExSituMarketing/EXS-Feeds-Cambuilder",
+    "homepage": "https://github.com/ExSituMarketing/EXS-Feeds-Chaturbate",
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
