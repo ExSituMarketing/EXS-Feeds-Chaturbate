@@ -24,20 +24,20 @@ class FeedsReader
     /**
      * @var int
      */
-    private $cacheTtl;
+    private $defaultTtl;
 
     /**
      * FeedsReader constructor.
      *
      * @param \Memcached $memcached
      * @param Client     $httpClient
-     * @param int        $cacheTtl
+     * @param int        $defaultTtl
      */
-    public function __construct(\Memcached $memcached, Client $httpClient, $cacheTtl = 120)
+    public function __construct(\Memcached $memcached, Client $httpClient, $defaultTtl = 300)
     {
         $this->memcached = $memcached;
         $this->httpClient = $httpClient;
-        $this->cacheTtl = $cacheTtl;
+        $this->defaultTtl = $defaultTtl;
     }
 
     /**
@@ -45,24 +45,22 @@ class FeedsReader
      */
     public function getLivePerformers()
     {
-        $cacheKey = $this->getCacheKey();
-
         if (
-            (false === $performers = $this->memcached->get($cacheKey))
+            (false === $performers = $this->memcached->get($this->getCacheKey()))
             || empty($performers)
         ) {
             $performers = $this->refreshLivePerformers();
-
-            $this->memcached->set($cacheKey, $performers, $this->cacheTtl);
         }
 
         return $performers;
     }
 
     /**
+     * @param int $ttl
+     *
      * @return array
      */
-    private function refreshLivePerformers()
+    public function refreshLivePerformers($ttl = null)
     {
         $performers = [];
 
@@ -123,6 +121,8 @@ class FeedsReader
                             }
                         }
                     }
+
+                    $this->memcached->set($this->getCacheKey(), $performers, $ttl ?: $this->defaultTtl);
                 }
             }
         } catch (\Exception $e) {

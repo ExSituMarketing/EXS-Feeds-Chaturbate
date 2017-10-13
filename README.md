@@ -36,6 +36,7 @@ Some configuration is available to manage the cache.
 ```yml
 # Default values
 exs_feeds_chaturbate:
+    cache_ttl: 300
     memcached_host: 'localhost'
     memcached_port: 11211
 ```
@@ -74,4 +75,13 @@ $performers = $container
  *     ...
  * ];
  */
+```
+
+A command is also available if you want to force refresh the cache.
+
+```bash
+$ app/console feeds:chaturbate:refresh-live-performers --env=prod --no-debug
+
+// Can specify cache lifetime
+$ app/console feeds:chaturbate:refresh-live-performers --ttl=3600 --env=prod --no-debug
 ```

@@ -246,7 +246,7 @@ JSON;
     {
         $memcached = $this->prophesize(\Memcached::class);
         $memcached->get('ChaturbateLivePerformers')->willReturn(false)->shouldBeCalledTimes(1);
-        $memcached->set('ChaturbateLivePerformers', $this->arrayResponse, 120)->shouldBeCalledTimes(1);
+        $memcached->set('ChaturbateLivePerformers', $this->arrayResponse, 300)->shouldBeCalledTimes(1);
 
         $body = $this->prophesize(StreamInterface::class);
         $body->getContents()->willReturn($this->rawResponse)->shouldBeCalledTimes(1);
@@ -275,7 +275,6 @@ JSON;
     {
         $memcached = $this->prophesize(\Memcached::class);
         $memcached->get('ChaturbateLivePerformers')->willReturn(false)->shouldBeCalledTimes(1);
-        $memcached->set('ChaturbateLivePerformers', [], 120)->shouldBeCalledTimes(1);
 
         $httpClient = $this->prophesize(Client::class);
         $httpClient->get('http://chaturbate.com/affiliates/api/onlinerooms/?format=json&wm=pl1vV', [
