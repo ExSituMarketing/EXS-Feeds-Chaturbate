@@ -2,10 +2,13 @@
 
 [![Build Status](https://travis-ci.org/ExSituMarketing/EXS-FeedsChaturbateBundle.svg?branch=master)](https://travis-ci.org/ExSituMarketing/EXS-FeedsChaturbateBundle)
 
-## Install
+## Installation
 
-Require the bundle from packagist
+This bundle uses [PHP's native Memcached objects](http://php.net/manual/en/class.memcached.php).
 
+**Make sure the memcached module is enabled in your PHP's installation.**
+
+Require the bundle using composer
 ```
 $ composer require exs/feeds-chaturbate-bundle
 ```
@@ -14,22 +17,22 @@ Enable the bundle in AppKernel
 
 ```php
 <?php
-...
+// app/AppKernel.php
+
 class AppKernel extends Kernel
 {
-    ...
+    // ...
     public function registerBundles()
     {
         $bundles = array(
-            ...
+            // ...
             new EXS\FeedsChaturbateBundle\EXSFeedsChaturbateBundle(),
         );
     }
-    ...
 }
 ```
 
-## Config
+## Configuration
 
 Some configuration is available to manage the cache.
 
@@ -77,7 +80,7 @@ $performers = $container
  */
 ```
 
-A command is also available if you want to force refresh the cache.
+A command is also available if you want to force refresh the memcached record.
 
 ```bash
 $ app/console feeds:chaturbate:refresh-live-performers --env=prod --no-debug
